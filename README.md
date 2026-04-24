@@ -45,14 +45,10 @@ http://localhost:8080/SmartCampus/api/v1
 | GET | `/api/v1/rooms` | Get all rooms |
 | POST | `/api/v1/rooms` | Create a new room |
 | GET | `/api/v1/rooms/{roomId}` | Get a single room |
-| PUT | `/api/v1/rooms/{roomId}` | Update a room |
 | DELETE | `/api/v1/rooms/{roomId}` | Delete a room |
 | GET | `/api/v1/sensors` | Get all sensors |
 | GET | `/api/v1/sensors?type={type}` | Filter sensors by type |
 | POST | `/api/v1/sensors` | Create a new sensor |
-| GET | `/api/v1/sensors/{sensorId}` | Get a single sensor |
-| PUT | `/api/v1/sensors/{sensorId}` | Update a sensor |
-| DELETE | `/api/v1/sensors/{sensorId}` | Delete a sensor |
 | GET | `/api/v1/sensors/{sensorId}/readings` | Get reading history for a sensor |
 | POST | `/api/v1/sensors/{sensorId}/readings` | Add a new reading for a sensor |
 
