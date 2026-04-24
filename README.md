@@ -32,7 +32,7 @@ All data is stored in-memory using Java collections such as `ArrayList` and `Has
 ## Base URL
 
 ```text
-http://localhost:8080/SmartCampus/api
+http://localhost:8080/SmartCampus/api/v1
 ```
 
 ---
@@ -41,20 +41,20 @@ http://localhost:8080/SmartCampus/api
 
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | `/api` | Discovery endpoint |
-| GET | `/api/rooms` | Get all rooms |
-| POST | `/api/rooms` | Create a new room |
-| GET | `/api/rooms/{roomId}` | Get a single room |
-| PUT | `/api/rooms/{roomId}` | Update a room |
-| DELETE | `/api/rooms/{roomId}` | Delete a room |
-| GET | `/api/sensors` | Get all sensors |
-| GET | `/api/sensors?type={type}` | Filter sensors by type |
-| POST | `/api/sensors` | Create a new sensor |
-| GET | `/api/sensors/{sensorId}` | Get a single sensor |
-| PUT | `/api/sensors/{sensorId}` | Update a sensor |
-| DELETE | `/api/sensors/{sensorId}` | Delete a sensor |
-| GET | `/api/sensors/{sensorId}/readings` | Get reading history for a sensor |
-| POST | `/api/sensors/{sensorId}/readings` | Add a new reading for a sensor |
+| GET | `/api/v1` | Discovery endpoint |
+| GET | `/api/v1/rooms` | Get all rooms |
+| POST | `/api/v1/rooms` | Create a new room |
+| GET | `/api/v1/rooms/{roomId}` | Get a single room |
+| PUT | `/api/v1/rooms/{roomId}` | Update a room |
+| DELETE | `/api/v1/rooms/{roomId}` | Delete a room |
+| GET | `/api/v1/sensors` | Get all sensors |
+| GET | `/api/v1/sensors?type={type}` | Filter sensors by type |
+| POST | `/api/v1/sensors` | Create a new sensor |
+| GET | `/api/v1/sensors/{sensorId}` | Get a single sensor |
+| PUT | `/api/v1/sensors/{sensorId}` | Update a sensor |
+| DELETE | `/api/v1/sensors/{sensorId}` | Delete a sensor |
+| GET | `/api/v1/sensors/{sensorId}/readings` | Get reading history for a sensor |
+| POST | `/api/v1/sensors/{sensorId}/readings` | Add a new reading for a sensor |
 
 ---
 
@@ -103,7 +103,7 @@ catalina start
 Open the following URL in a browser or Postman:
 
 ```text
-http://localhost:8080/SmartCampus/api
+http://localhost:8080/SmartCampus/api/v1
 ```
 
 The API should return discovery information about the available resources.
@@ -115,19 +115,19 @@ The API should return discovery information about the available resources.
 ### 1 - Discovery Endpoint
 
 ```bash
-curl -X GET http://localhost:8080/SmartCampus/api
+curl -X GET http://localhost:8080/SmartCampus/api/v1
 ```
 
 ### 2 - Get All Rooms
 
 ```bash
-curl -X GET http://localhost:8080/SmartCampus/api/rooms
+curl -X GET http://localhost:8080/SmartCampus/api/v1/rooms
 ```
 
 ### 3 - Create a New Room
 
 ```bash
-curl -X POST http://localhost:8080/SmartCampus/api/rooms \
+curl -X POST http://localhost:8080/SmartCampus/api/v1/rooms \
   -H "Content-Type: application/json" \
   -d '{"id":"LAB-101","name":"Computer Lab","capacity":30}'
 ```
@@ -135,13 +135,13 @@ curl -X POST http://localhost:8080/SmartCampus/api/rooms \
 ### 4 - Get a Single Room
 
 ```bash
-curl -X GET http://localhost:8080/SmartCampus/api/rooms/LAB-101
+curl -X GET http://localhost:8080/SmartCampus/api/v1/rooms/LAB-101
 ```
 
 ### 5 - Update a Room
 
 ```bash
-curl -X PUT http://localhost:8080/SmartCampus/api/rooms/LAB-101 \
+curl -X PUT http://localhost:8080/SmartCampus/api/v1/rooms/LAB-101 \
   -H "Content-Type: application/json" \
   -d '{"id":"LAB-101","name":"Updated Computer Lab","capacity":35}'
 ```
@@ -149,13 +149,13 @@ curl -X PUT http://localhost:8080/SmartCampus/api/rooms/LAB-101 \
 ### 6 - Delete a Room
 
 ```bash
-curl -X DELETE http://localhost:8080/SmartCampus/api/rooms/LAB-101
+curl -X DELETE http://localhost:8080/SmartCampus/api/v1/rooms/LAB-101
 ```
 
 ### 7 - Create a Sensor
 
 ```bash
-curl -X POST http://localhost:8080/SmartCampus/api/sensors \
+curl -X POST http://localhost:8080/SmartCampus/api/v1/sensors \
   -H "Content-Type: application/json" \
   -d '{"id":"TEMP-001","type":"Temperature","status":"ACTIVE","currentValue":25.5,"roomId":"LAB-101"}'
 ```
@@ -163,13 +163,13 @@ curl -X POST http://localhost:8080/SmartCampus/api/sensors \
 ### 8 - Filter Sensors by Type
 
 ```bash
-curl -X GET "http://localhost:8080/SmartCampus/api/sensors?type=Temperature"
+curl -X GET "http://localhost:8080/SmartCampus/api/v1/sensors?type=Temperature"
 ```
 
 ### 9 - Add a Sensor Reading
 
 ```bash
-curl -X POST http://localhost:8080/SmartCampus/api/sensors/TEMP-001/readings \
+curl -X POST http://localhost:8080/SmartCampus/api/v1/sensors/TEMP-001/readings \
   -H "Content-Type: application/json" \
   -d '{"value":26.2}'
 ```
@@ -177,13 +177,13 @@ curl -X POST http://localhost:8080/SmartCampus/api/sensors/TEMP-001/readings \
 ### 10 - Get Sensor Reading History
 
 ```bash
-curl -X GET http://localhost:8080/SmartCampus/api/sensors/TEMP-001/readings
+curl -X GET http://localhost:8080/SmartCampus/api/v1/sensors/TEMP-001/readings
 ```
 
 ### 11 - Try to Create a Sensor With Invalid Room ID
 
 ```bash
-curl -X POST http://localhost:8080/SmartCampus/api/sensors \
+curl -X POST http://localhost:8080/SmartCampus/api/v1/sensors \
   -H "Content-Type: application/json" \
   -d '{"id":"CO2-999","type":"CO2","status":"ACTIVE","currentValue":400.0,"roomId":"INVALID-ROOM"}'
 ```
@@ -191,13 +191,13 @@ curl -X POST http://localhost:8080/SmartCampus/api/sensors \
 ### 12 - Try to Delete a Room With Assigned Sensors
 
 ```bash
-curl -X DELETE http://localhost:8080/SmartCampus/api/rooms/LAB-101
+curl -X DELETE http://localhost:8080/SmartCampus/api/v1/rooms/LAB-101
 ```
 
 ### 13 - Try to Add a Reading to a Sensor in Maintenance
 
 ```bash
-curl -X POST http://localhost:8080/SmartCampus/api/sensors/TEMP-001/readings \
+curl -X POST http://localhost:8080/SmartCampus/api/v1/sensors/TEMP-001/readings \
   -H "Content-Type: application/json" \
   -d '{"value":27.0}'
 ```
